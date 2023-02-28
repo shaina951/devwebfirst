@@ -26,10 +26,3 @@ with open('./data/rna_import_20221101_dpt_01.csv', 'r', encoding='ISO-8859-1') a
         link.commit()
 
 link.close()
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
