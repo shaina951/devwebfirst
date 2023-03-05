@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>visualisations</title>
+{% endblock %}
+
+{% block content %}
+<h1>Diagramme en radar :</h1>
+
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = {
+        labels: ['011S', '012P', '013S', '014S'],
+        datasets: [{
+            label: 'gestion',
+            data: [1542, 3994, 1346, 1840],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'radar',
+        data: data,
+        options: {
+            scales: {
+                r: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+{% endblock %}

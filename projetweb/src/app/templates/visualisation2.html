@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Dashboard</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Camembert (gestion):</h1>
+  <div style="width: 400px; height: 400px; text-align: center; margin: auto;">
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  
+  <script>
+    var data = JSON.parse('{{ graph_data|safe }}');
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: data.values,
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8E5EA2', '#3cba9f', '#e8c3b9'],
+        }],
+        labels: data.labels
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            fontColor: '#333',
+            fontSize: 14
+          }
+        },
+        tooltips: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var dataset = data.datasets[tooltipItem.datasetIndex];
+              var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                return previousValue + currentValue;
+              });
+              var currentValue = dataset.data[tooltipItem.index];
+              var percentage = Math.floor(((currentValue/total) * 100)+0.5);
+              return data.labels[tooltipItem.index] + ': ' + currentValue + ' (' + percentage + '%)';
+            }
+          }
+        },
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}

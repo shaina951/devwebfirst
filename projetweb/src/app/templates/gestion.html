@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>visualisations</title>
+{% endblock %}
+
+{% block content %}
+<h1>diagramme en bâton (gestion) :</h1>
+
+<canvas id="myChart"></canvas>
+
+<select id="variableSelect">
+    <option value="1542">011S</option>
+    <option value="3994">012P</option>
+    <option value="1346">013S</option>
+    <option value="1840">014S</option>
+</select>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = {
+        labels: ['011S', '012P', '013S', '014S'],
+        datasets: [{
+            label: 'gestion',
+            data: [1542, 3994, 1346, 1840],
+            backgroundColor: 'rgb(137, 3, 16)',
+            borderColor: 'rgb(11, 87, 127)',
+            borderWidth: 1
+        }]
+    };
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    const variableSelect = document.getElementById('variableSelect');
+    variableSelect.addEventListener('change', function() {
+        myChart.data.datasets[0].data = [variableSelect.value];
+        myChart.update();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}<title>Dashboard</title>{% endblock %}
+
+{% block content %}
+<h1>Liste de visualisation</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Descriptions</th>
+            <th>Liens visualisation</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Enumération en diagramme des effectifs des associations selon chaque gestion.</td>
+            <td><a href="/gestion" class="bouton-page" >DataViz1</a></td>
+            
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>Camembert des effectifs des associations selon chaque gestion</td>
+            <td><a href="/visualisation2" class="bouton-page" >DataViz2</a></td>
+
+            
+        </tr>
+    </tbody>
+        <tr>
+            <td>Radars des effectifs des associations selon chaque gestion.</td>
+            <td><a href="/radar" class="bouton-page" >DataViz3</a></td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}

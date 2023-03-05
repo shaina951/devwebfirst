@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+<title>Ajouter une ligne</title>
+{% endblock %} 
+
+{% block content %}
+
+<h1>Ajouter une ligne</h1>
+<form method="post">
+    <br>
+    <br>
+    <div class="form-group">
+        <label for="rna_id">RNA ID:</label>
+        <input type="text" class="form-control" id="rna_id" name="rna_id">
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+        <label for="rna_id_ex">RNA ID EX_ID:</label>
+        <input type="text" class="form-control" id="rna_id_ex" name="rna_id_ex">
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+        <label for="gestion">Gestion:</label>
+        <input type="text" class="form-control" id="gestion" name="gestion">
+    </div>
+    <br>
+    <br>
+    <br>
+    <button type="submit" class="bouton-page">Valider l'ajout</button>
+</form>
+{% endblock %}
